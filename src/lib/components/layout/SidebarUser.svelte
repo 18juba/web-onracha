@@ -17,22 +17,23 @@
 </script>
 
 <div
-  class={`font1 fixed z-50 top-10 left-10 flex backdrop-blur-sm flex-col items-center text-wrap flex-wrap gap-4 px-4 rounded-3xl transition-all duration-300 border-2 border-gray-400/50 
+  class={`fixed z-50 top-10 left-10 flex flex-col text-wrap flex-wrap gap-4 items-center backdrop-blur-sm p-4 rounded-3xl transition-all duration-300 border-2 border-gray-400/50 
     ${
       isExpanded
-        ? "w-72 h-11/12 py-4 justify-items-start bg-black/15"
+        ? "w-72 h-11/12 justify-items-start bg-red-800"
         : isHovered
-          ? "w-24 h-96 py-4 justify-items-start bg-green-800/25"
-          : "w-20 h-20 justify-center bg-gray-800/15"
-    }
+          ? "w-24 h-96 justify-items-start bg-red-800"
+          : "w-20 h-20 justify-center bg-red-800"
+    }"
   `}
+  aria-roledescription="Sidebar"
   on:mouseenter={() => (isHovered = true)}
   on:mouseleave={() => (isHovered = false)}
 >
   {#if isHovered && !isExpanded}
     <button class="flex cursor-pointer" on:click={() => (isExpanded = true)}>
-      <ChevronRight class="text-green-400" />
-      <ChevronRight class="text-green-400" />
+      <ChevronRight strokeWidth={4} class="text-green-400" />
+      <ChevronRight strokeWidth={4} class="text-green-400" />
     </button>
   {/if}
 
@@ -70,8 +71,8 @@
         Cristiano Ronaldo
       </h1>
       <button class="flex cursor-pointer" on:click={() => (isExpanded = false)}>
-        <ChevronLeft class="w-4 text-green-400" />
-        <ChevronLeft class="w-4 text-green-400" />
+        <ChevronLeft strokeWidth={4} class="w-4 text-green-400" />
+        <ChevronLeft strokeWidth={4} class="w-4 text-green-400" />
       </button>
     </div>
   {/if}
@@ -86,18 +87,9 @@
             : "justify-center items-center"
         }`}
       >
-        <li
-          class={`w-full h-10 gap-3 flex justify-center items-center p-4 bg-gray-500/20 hover:border-2 border-green-400/90 rounded-full cursor-text
-            ${isExpanded ? "justify-start" : "justify-center items-center"}
-          `}
-        >
-          <Search />
-          {#if isExpanded}<p>Pesquisa</p>{/if}
-        </li>
-
         <a
           href="/"
-          class={`w-full h-10 gap-3 flex items-center p-4 hover:border border-green-400/90 rounded-full cursor-pointer
+          class={`w-full gap-3 flex items-center py-2 px-3 hover:border border-green-400/90 rounded-full cursor-pointer
             ${isExpanded ? "justify-start" : "justify-center items-center"}
           `}
         >
@@ -107,7 +99,7 @@
 
         <a
           href="/calendario"
-          class={`w-full h-10 gap-3 flex items-center p-4 hover:border border-green-400/90 rounded-full cursor-pointer
+          class={`w-full gap-3 flex items-center py-2 px-3 hover:border border-green-400/90 rounded-full cursor-pointer
             ${isExpanded ? "justify-start" : "justify-center items-center"}
           `}
         >
@@ -117,20 +109,18 @@
 
         <a
           href="/notificacoes"
-          class={`w-full h-10 gap-3 flex items-center p-4 hover:border border-green-400/90 rounded-full cursor-pointer
+          class={`relative w-full gap-3 flex items-center py-2 px-3 hover:border border-green-400/90 rounded-full cursor-pointer
             ${isExpanded ? "justify-start" : "justify-center items-center"}
           `}
         >
           <Bell />
+          <span
+            class="absolute -top-0 -right-0 p-1 rounded-full text-center font-bold text-white text-xs bg-red-500/70"
+          >
+            {#if isExpanded}5{/if}
+          </span>
           {#if isExpanded}
-            <p class="flex justify-between items-center">
-              Notificações
-              <span
-                class="w-6 h-5 ml-14 flex justify-center items-center py-2 font-bold text-white text-xs bg-red-500/70 rounded-lg"
-              >
-                5
-              </span>
-            </p>
+            <p>Notificações</p>
           {/if}
         </a>
       </ul>
@@ -142,7 +132,7 @@
             class="w-full text-green-400/95 font-bold text-left flex flex-col gap-3"
           >
             <li
-              class={`w-full h-10 gap-3 flex items-center p-4 hover:border border-green-400/90 rounded-full cursor-pointer
+              class={`w-full gap-3 flex items-center py-2 px-3 hover:border border-green-400/90 rounded-full cursor-pointer
                 ${isExpanded ? "justify-start" : "justify-center items-center"}
               `}
             >
@@ -151,7 +141,7 @@
             </li>
 
             <li
-              class={`w-full h-10 gap-3 flex items-center p-4 hover:border border-green-400/90 rounded-full cursor-pointer
+              class={`w-full gap-3 flex items-center py-2 px-3 hover:border border-green-400/90 rounded-full cursor-pointer
                 ${isExpanded ? "justify-start" : "justify-center items-center"}
               `}
             >
