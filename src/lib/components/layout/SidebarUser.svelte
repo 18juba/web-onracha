@@ -3,14 +3,18 @@
   import {
     ChevronRight,
     ChevronLeft,
-    Home,
+    LayoutPanelLeft,
     Search,
     Settings,
     LogOut,
-    Bell,
-    Calendar,
+    Mail,
+    CalendarDays,
     User2,
+    Icon
   } from "@lucide/svelte";
+  import { soccerPitch } from '@lucide/lab';
+
+  import foto_perfil from "../../assets/img/foto_perfil.webp";
 
   let isHovered = false;
   let isExpanded = false;
@@ -40,15 +44,14 @@
   {#if !isExpanded}
     <div
       class={`flex items-center justify-center rounded-full bg-green-500/10
-        ${isExpanded ? "h-20 w-20" : isHovered ? "h-16 w-16" : "h-12 w-12"}
+        ${isHovered ? "p-2" : "p-1"}
       `}
     >
-      <div
-        class="h-3/4 w-3/4 rounded-full object-cover transition-all duration-100 cursor-pointer hover:border-4 border-green-400/90"
+      <img
+        class="rounded-full object-cover transition-all duration-100 cursor-pointer hover:border-4 border-green-400/90"
         alt="Avatar"
-      >
-        <User2 />
-      </div>
+        src={foto_perfil}
+      />
     </div>
   {/if}
 
@@ -57,12 +60,11 @@
       <div
         class="flex w-12 h-12 items-center justify-center rounded-full bg-green-500/10"
       >
-        <div
+        <img
           class="h-3/4 w-3/4 rounded-full object-cover transition-all duration-100 cursor-pointer hover:border-4 border-green-400/90"
           alt="Avatar"
-        >
-          <User2 />
-        </div>
+          src={foto_perfil}
+        />
       </div>
       <h1
         class="relative flex justify-center items-center text-sm font-bold text-white text-center text-wrap"
@@ -88,39 +90,49 @@
         }`}
       >
         <a
-          href="/"
+          href="/membro"
           class={`w-full gap-3 flex items-center py-2 px-3 hover:border border-green-400/90 rounded-full cursor-pointer
             ${isExpanded ? "justify-start" : "justify-center items-center"}
           `}
         >
-          <Home />
+          <LayoutPanelLeft />
           {#if isExpanded}<p>Central</p>{/if}
         </a>
 
         <a
-          href="/calendario"
+          href="/membro/rachas"
           class={`w-full gap-3 flex items-center py-2 px-3 hover:border border-green-400/90 rounded-full cursor-pointer
             ${isExpanded ? "justify-start" : "justify-center items-center"}
           `}
         >
-          <Calendar />
-          {#if isExpanded}<p>Jogos</p>{/if}
+          <Icon iconNode={soccerPitch}/>
+          {#if isExpanded}<p>Rachas</p>{/if}
         </a>
 
         <a
-          href="/notificacoes"
+          href="/membro/calendario"
+          class={`w-full gap-3 flex items-center py-2 px-3 hover:border border-green-400/90 rounded-full cursor-pointer
+            ${isExpanded ? "justify-start" : "justify-center items-center"}
+          `}
+        >
+          <CalendarDays />
+          {#if isExpanded}<p>Calendário</p>{/if}
+        </a>
+
+        <a
+          href="/membro/notificacoes"
           class={`relative w-full gap-3 flex items-center py-2 px-3 hover:border border-green-400/90 rounded-full cursor-pointer
             ${isExpanded ? "justify-start" : "justify-center items-center"}
           `}
         >
-          <Bell />
+          <Mail />
           <span
             class="absolute -top-0 -right-0 p-1 rounded-full text-center font-bold text-white text-xs bg-red-500/70"
           >
             {#if isExpanded}5{/if}
           </span>
           {#if isExpanded}
-            <p>Notificações</p>
+            <p>Mensagens</p>
           {/if}
         </a>
       </ul>
