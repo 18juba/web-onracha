@@ -1,86 +1,111 @@
-<script>
+<script lang="ts">
+  import { Crown, Eye, EyeOff } from "@lucide/svelte";
+  import { goto } from "$app/navigation";
+
+  let showPassword = false;
+  let email = "";
+  let password = "";
+  let remember = false;
+
+  function login() {
+    console.log({ email, password, remember });
+    // Aqui você pode chamar sua API de login
+    goto("/");
+  }
 </script>
 
-<div
-  class="relative min-w-screen min-h-screen flex-1 flex flex-col justify-center items-center"
->
-  <div class="fixed w-4xl h-7/12 backdrop-blur-sm">
-    <!-- Lado Esquerdo -->
-    <div
-      class="absolute left-0 h-full w-4/12 flex flex-col justify-between items-center
-        rounded-2xl border-2 border-gray-400/50 px-6 py-10"
-    >
-      <img
-        class="w-full h-3/12 object-contain"
-        src="https://www.central3.com.br/wp-content/uploads/2017/03/brasao-copa-nordeste.png"
-        alt="Copa do Nordeste"
-      />
-
-      <div
-        class="w-full h-3/12 flex flex-col justify-between items-center text-white text-balance"
-      >
-        <h1 class="text-xl font-bold">
-          Cadastre-se
-          <p class="text-sm text-white/60">Ou faça login para continuar</p>
-        </h1>
-      </div>
-
-      <button
-        class="w-52 h-14 flex justify-center items-center rounded-4xl border-2 border-white
-          cursor-pointer transition-all duration-300 hover:bg-green-600/5 hover:border-green-500"
-      >
-        <p
-          class="flex justify-center items-center w-full h-full text-base
-            font-bold text-white transition-all duration-300 hover:text-green-500"
-        >
-          Fazer Login
-        </p>
-      </button>
+<div class="min-h-screen bg-gradient-to-br from-slate-900 via-emerald-900 to-slate-900 flex items-center justify-center p-4">
+  <div class="w-full max-w-md">
+    <!-- Logo -->
+    <div class="flex items-center justify-center gap-2 mb-8">
+      <Crown class="h-8 w-8 text-cyan-400" />
+      <span class="text-2xl font-bold text-white">ArenaBook</span>
     </div>
 
-    <!-- Lado Direito -->
-    <div
-      class="absolute right-0 top-[18px] h-11/12 w-8/12 flex flex-col justify-start items-start
-        rounded-r-2xl border-2 border-gray-400/50 border-l-0"
-    >
-      <h1 class="text-2xl font-bold text-white">Cadastro</h1>
-
-      <div class="w-full h-4 flex justify-center gap-2 items-center">
-        <hr class="w-3/12 h-0.5 bg-white" />
-        <p class="text-white text-xs font-bold">Cadastre-se usando seu email</p>
-        <hr class="w-3/12 h-0.5 bg-white" />
+    <div class="bg-slate-800/50 border border-emerald-500/30 backdrop-blur-sm rounded-lg shadow-lg">
+      <div class="text-center p-6">
+        <h2 class="text-2xl font-bold text-white">Bem-vindo de volta</h2>
+        <p class="text-gray-300">Entre na sua conta para continuar</p>
       </div>
 
-      <div class="w-full h-52 flex flex-col justify-center items-center gap-3">
-        <input
-          type="text"
-          placeholder="Nome"
-          class="w-full h-10 rounded-4xl border-2 border-gray-400/50
-            px-4 py-2 text-base font-bold text-white
-            transition-all duration-300 hover:bg-green-600/5 hover:border-green-500 active:bg-green-600/5"
-        />
-        <input
-          type="email"
-          placeholder="Email"
-          class="w-full h-10 rounded-4xl border-2 border-gray-400/50
-            px-4 py-2 text-base font-bold text-white
-            transition-all duration-300 hover:bg-green-600/5 hover:border-green-500 active:bg-green-600/5"
-        />
-        <input
-          type="password"
-          placeholder="Senha"
-          class="w-full h-10 rounded-4xl border-2 border-gray-400/50
-            px-4 py-2 text-base font-bold text-white
-            transition-all duration-300 hover:bg-green-600/5 hover:border-green-500 active:bg-green-600/5"
-        />
-        <input
-          type="password"
-          placeholder="Confirmar Senha"
-          class="w-full h-10 rounded-4xl border-2 border-gray-400/50
-            px-4 py-2 text-base font-bold text-white
-            transition-all duration-300 hover:bg-green-600/5 hover:border-green-500 active:bg-green-600/5"
-        />
+      <div class="p-6 space-y-6">
+        <!-- Email -->
+        <div class="space-y-2">
+          <label for="email" class="text-white">Email</label>
+          <input
+            id="email"
+            type="email"
+            bind:value={email}
+            placeholder="seu@email.com"
+            class="w-full bg-slate-700/50 border border-emerald-500/30 text-white rounded px-3 py-2 placeholder:text-gray-400 focus:border-cyan-400"
+          />
+        </div>
+
+        <!-- Senha -->
+        <div class="space-y-2">
+          <label for="password" class="text-white">Senha</label>
+          <div class="relative">
+            <input
+              id="password"
+              type={showPassword ? "text" : "password"}
+              bind:value={password}
+              placeholder="Sua senha"
+              class="w-full bg-slate-700/50 border border-emerald-500/30 text-white rounded px-3 py-2 pr-10 placeholder:text-gray-400 focus:border-cyan-400"
+            />
+            <button
+              type="button"
+              on:click={() => (showPassword = !showPassword)}
+              class="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-cyan-400"
+            >
+              {#if showPassword}
+                <EyeOff class="h-4 w-4" />
+              {:else}
+                <Eye class="h-4 w-4" />
+              {/if}
+            </button>
+          </div>
+        </div>
+
+        <!-- Lembrar e Esqueceu a senha -->
+        <div class="flex items-center justify-between">
+          <div class="flex items-center space-x-2">
+            <input
+              id="remember"
+              type="checkbox"
+              bind:checked={remember}
+              class="rounded border-emerald-500/30 bg-slate-700/50 text-cyan-500 focus:ring-cyan-400"
+            />
+            <label for="remember" class="text-sm text-gray-300">Lembrar de mim</label>
+          </div>
+          <a href="/recuperar_senha" class="text-sm text-cyan-400 hover:text-cyan-300 transition-colors">
+            Esqueceu a senha?
+          </a>
+        </div>
+
+        <!-- Botão entrar -->
+        <button
+          on:click={login}
+          class="w-full bg-cyan-500 hover:bg-cyan-600 text-white rounded px-4 py-2 font-medium"
+        >
+          Entrar
+        </button>
+
+        <!-- Link cadastro -->
+        <div class="text-center">
+          <p class="text-gray-300">
+            Não tem uma conta?
+            <a href="/cadastro" class="text-cyan-400 hover:text-cyan-300 transition-colors font-medium">
+              Cadastre-se
+            </a>
+          </p>
+        </div>
       </div>
+    </div>
+
+    <div class="text-center mt-6">
+      <a href="/" class="text-gray-400 hover:text-cyan-400 transition-colors text-sm">
+        ← Voltar para o início
+      </a>
     </div>
   </div>
 </div>
