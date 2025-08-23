@@ -3,9 +3,9 @@
   import { CalendarDays, MapPin, Users, Crown, Play, Trophy } from "@lucide/svelte";
 </script>
 
-<div class="min-h-screen bg-gradient-to-br from-slate-900 via-emerald-900 to-slate-900">
+<div class="min-h-screen bg-gradient-to-br from-slate-900 via-emerald-900 to-slate-900 pt-28">
   <!-- Header -->
-  <header class="container mx-auto px-4 py-6">
+  <header class="absolute top-0 w-full z-50 px-8 py-4 bg-white/5 rounded-b-3xl">
     <nav class="flex items-center justify-between">
     <img alt="Logo" src={logo} class="w-60 cursor-pointer"/>
       <div class="hidden md:flex items-center gap-6">
@@ -13,7 +13,7 @@
         <a href="#about" class="text-gray-300 hover:text-cyan-400 transition-colors">Sobre</a>
         <a href="#contact" class="text-gray-300 hover:text-cyan-400 transition-colors">Contato</a>
       </div>
-      <button class="bg-cyan-500 hover:bg-cyan-600 text-white px-4 py-2 rounded">Entrar</button>
+      <button class="bg-cyan-500 hover:bg-cyan-600 text-white px-4 py-2 rounded-md cursor-pointer">Entrar</button>
     </nav>
   </header>
 
@@ -29,11 +29,11 @@
           Conecte jogadores, organize partidas e gerencie sua arena com facilidade.
         </p>
         <div class="flex flex-col sm:flex-row gap-4">
-          <button class="flex items-center justify-center gap-2 bg-cyan-500 hover:bg-cyan-600 text-white px-8 py-3 rounded-lg">
+          <button class="flex items-center justify-center gap-2 bg-cyan-500 hover:bg-cyan-600 text-white px-8 py-3 rounded-lg cursor-pointer">
             <Play class="h-5 w-5" />
             Começar Agora
           </button>
-          <button class="px-8 py-3 rounded-lg border border-cyan-400 text-cyan-400 hover:bg-cyan-400 hover:text-white bg-transparent">
+          <button class="px-8 py-3 rounded-lg border border-cyan-400 text-cyan-400 hover:bg-cyan-400 hover:text-white bg-transparent cursor-pointer">
             Saiba Mais
           </button>
         </div>
