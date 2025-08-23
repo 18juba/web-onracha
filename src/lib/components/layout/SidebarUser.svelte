@@ -70,7 +70,7 @@
         class="relative flex justify-center items-center text-sm font-bold text-white text-center text-wrap"
         style="text-shadow: 0 2px 2px green"
       >
-        Cristiano Ronaldo
+        JORGE LUCAS
       </h1>
       <button class="flex cursor-pointer" on:click={() => (isExpanded = false)}>
         <ChevronLeft strokeWidth={4} class="w-4 text-green-400" />

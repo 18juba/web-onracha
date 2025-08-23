@@ -4,6 +4,6 @@
 
 <SidebarUser />
 
-<div class="pl-30 py-4">
+<div class="pl-36 pr-4 pt-16">
   <slot />
 </div>

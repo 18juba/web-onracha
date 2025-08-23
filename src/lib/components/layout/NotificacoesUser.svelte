@@ -82,7 +82,7 @@
 
 <div class="flex wrapper min-h-screen bg-transparent text-white">
   <div
-    class="flex-1 flex flex-col p-4 md:p-6 lg:p-8 gap-4 overflow-auto ml-4 md:ml-6 lg:ml-8"
+    class="flex-1 flex flex-col gap-4 overflow-auto"
   >
     <!-- Cabeçalho -->
     <div class="flex flex-col md:flex-row justify-between items-center gap-4">

@@ -1,195 +1,403 @@
 <script>
-  // Dados mockados organizados por meses
-  const mockJogos = [
+  const gamesData = [
     {
-      status: "agendado",
-      data: { mes: 3, dia: 5 },
-      time1: {
-        logo: "https://upload.wikimedia.org/wikipedia/pt/thumb/4/41/Logotipo_do_SBT.svg/800px-Logotipo_do_SBT.svg.png",
-        placar: null,
-      },
-      time2: {
-        logo: "https://logodetimes.com/times/fortaleza/logo-fortaleza-256.png",
-        placar: null,
-      },
-      horario: "9:30",
+      date: 5,
+      games: [
+        {
+          id: 1,
+          arena: "Arena Goleada",
+          time: "9:30",
+          arenaImage:
+            "https://www.baratocoletivo.com.br/static/team/2016/1010/14761334341290.jpg",
+          location: "Vila Madalena",
+        },
+      ],
     },
     {
-      status: "finalizado",
-      data: { mes: 1, dia: 15 },
-      time1: {
-        logo: "https://logodetimes.com/times/avai/logo-avai-256.png",
-        placar: 1,
-      },
-      time2: {
-        logo: "https://logodetimes.com/times/fortaleza/logo-fortaleza-256.png",
-        placar: 2,
-      },
-      horario: "16:00",
+      date: 15,
+      games: [
+        {
+          id: 2,
+          arena: "Villa's Society",
+          time: "19:40",
+          arenaImage:
+            "https://www.futebol7brasil.com.br/images/noticias/1148/579a9b74b412fba1fe6ede690185a56b.jpg",
+          location: "Barroso",
+        },
+      ],
     },
     {
-      status: "finalizado",
-      data: { mes: 2, dia: 10 },
-      time1: {
-        logo: "https://logodetimes.com/times/fortaleza/logo-fortaleza-256.png",
-        placar: 2,
-      },
-      time2: {
-        logo: "https://logodetimes.com/times/gremio/logo-gremio-256.png",
-        placar: 1,
-      },
-      horario: "19:00",
+      date: 22,
+      games: [
+        {
+          id: 3,
+          arena: "Se7e Sports",
+          time: "18:40",
+          arenaImage:
+            "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTZjb_qy2PT7n2lt-4Gk215Xx-Z0pFF-UBNOw&s",
+          location: "Bairro de Fátima",
+        },
+        {
+          id: 4,
+          arena: "No Alvo",
+          time: "22:00",
+          arenaImage:
+            "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRzSSlvh2EhxazDn8F74UcP0QGHHqvkeeKJuw&s",
+          location: "José Walter",
+        },
+      ],
     },
     {
-      status: "finalizado",
-      data: { mes: 1, dia: 3 },
-      time1: {
-        logo: "https://logodetimes.com/times/fortaleza/logo-fortaleza-256.png",
-        placar: 2,
-      },
-      time2: {
-        logo: "https://logodetimes.com/times/red-bull-bragantino/logo-red-bull-bragantino-256.png",
-        placar: 1,
-      },
-      horario: "20:00",
-    },
-    {
-      status: "agendado",
-      data: { mes: 3, dia: 15 },
-      time1: {
-        logo: "https://logodetimes.com/times/red-bull-bragantino/logo-red-bull-bragantino-256.png",
-        placar: null,
-      },
-      time2: {
-        logo: "https://logodetimes.com/times/fortaleza/logo-fortaleza-256.png",
-        placar: null,
-      },
-      horario: "9:30",
+      date: 28,
+      games: [
+        {
+          id: 5,
+          arena: "Estádio Presidente Vargas",
+          time: "20:30",
+          arenaImage:
+            "https://www.fortaleza.ce.gov.br/images/images1/00008M/BeiraMar/21%2005%202022%20PV%20(25).JPG",
+          location: "Benfica",
+        },
+      ],
     },
   ];
 
-  // Configuração dos meses
-  const mesesConfig = [
-    { nome: "Janeiro", numero: 1, dias: 31 },
-    { nome: "Fevereiro", numero: 2, dias: 28 },
-    { nome: "Março", numero: 3, dias: 31 },
-    { nome: "Abril", numero: 4, dias: 30 },
-    { nome: "Maio", numero: 5, dias: 31 },
-    { nome: "Junho", numero: 6, dias: 30 },
-    { nome: "Julho", numero: 7, dias: 31 },
-    { nome: "Agosto", numero: 8, dias: 31 },
-    { nome: "Setembro", numero: 9, dias: 30 },
-    { nome: "Outubro", numero: 10, dias: 31 },
-    { nome: "Novembro", numero: 11, dias: 30 },
-    { nome: "Dezembro", numero: 12, dias: 31 },
+  const months = [
+    "Janeiro",
+    "Fevereiro",
+    "Março",
+    "Abril",
+    "Maio",
+    "Junho",
+    "Julho",
+    "Agosto",
+    "Setembro",
+    "Outubro",
+    "Novembro",
+    "Dezembro",
   ];
 
-  // Estado → mês atual
-  let mesSelecionado = new Date().getMonth() + 1;
+  let currentDate = new Date();
+  let selectedMonth = currentDate.getMonth();
+  const selectedYear = currentDate.getFullYear();
+  let selectedDayGames = [];
+  let isModalOpen = false;
 
-  // Dia atual
-  const hoje = new Date();
-  const diaAtual = hoje.getDate();
-  const mesAtualSistema = hoje.getMonth() + 1;
+  let monthDropdownOpen = false;
 
-  // Reativos
-  $: jogosDoMes = mockJogos.filter((jogo) => jogo.data.mes === mesSelecionado);
-  $: mesAtual = mesesConfig.find((mes) => mes.numero === mesSelecionado);
+  const getGamesForDay = (day) =>
+    (gamesData.find((g) => g.date === day) || {}).games ?? [];
+
+  function getDaysInMonth(month, year) {
+    const lastDay = new Date(year, month + 1, 0);
+    const daysInMonth = lastDay.getDate();
+    return Array.from({ length: daysInMonth }, (_, i) => i + 1);
+  }
+
+  function handleCardClick(day, games) {
+    // só abre modal quando há múltiplos jogos (como no original)
+    if (games.length > 1) {
+      selectedDayGames = games;
+      isModalOpen = true;
+    }
+  }
+
+  $: days = getDaysInMonth(selectedMonth, selectedYear);
+  $: today = currentDate.getDate();
+  $: currentMonth = currentDate.getMonth();
+
+  function onWindowClick() {
+    monthDropdownOpen = false;
+  }
+
+  function onKeydown(e) {
+    if (e.key === "Escape") {
+      isModalOpen = false;
+    }
+  }
 </script>
 
-<div class="flex wrapper min-h-screen bg-transparent text-white">
-  <!-- Conteúdo Principal -->
-  <div class="flex-1 flex flex-col p-4 md:p-6 lg:p-8 gap-4 overflow-auto">
-    <!-- Cabeçalho -->
-    <div class="flex flex-col md:flex-row justify-between items-center gap-4">
-      <h1 class="text-2xl md:text-3xl font-bold">{mesAtual.nome}</h1>
-      <select
-        class="bg-gray-800 rounded-lg px-4 py-2 text-sm md:text-base"
-        bind:value={mesSelecionado}
+<svelte:window on:click={onWindowClick} on:keydown={onKeydown} />
+
+<!-- container -->
+<div class="px-6">
+  <!-- Header: título + dropdown -->
+  <div class="flex items-center justify-between mb-6">
+    <h1 class="text-white text-3xl font-bold">{months[selectedMonth]}</h1>
+
+    <!-- Dropdown custom -->
+    <div class="relative">
+      <button
+        class="text-white hover:bg-emerald-800/50 flex items-center gap-2 px-3 py-1 rounded"
+        on:click|stopPropagation={() =>
+          (monthDropdownOpen = !monthDropdownOpen)}
+        aria-haspopup="true"
+        aria-expanded={monthDropdownOpen}
       >
-        {#each mesesConfig as mes}
-          <option value={mes.numero}>{mes.nome}</option>
-        {/each}
-      </select>
-    </div>
-
-    <hr class="my-4 border-gray-400/50" />
-
-    <!-- Grid de Dias -->
-    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-7 gap-4">
-      {#each Array.from({ length: mesAtual.dias }, (_, i) => i + 1) as dia}
-        {@const jogo = jogosDoMes.find((j) => j.data.dia === dia)}
-        {@const ehDiaAtual = dia === diaAtual && mesSelecionado === mesAtualSistema}
-
-        <div
-          class={`flex flex-col justify-between p-4 h-40 rounded-3xl border-2 cursor-pointer overflow-hidden transition-all duration-300
-            ${ehDiaAtual ? "inset-shadow-sm inset-shadow-blue-700 border-blue-600 bg-blue-400/10" : ""}
-            ${
-              !ehDiaAtual && jogo
-                ? jogo.status === "agendado"
-                  ? "border-green-400/90 hover:border-green-400 hover:bg-green-400/10"
-                  : "border-gray-200/80"
-                : "border-gray-400/50"
-            }`}
+        <span>{months[selectedMonth]}</span>
+        <!-- ChevronDown SVG -->
+        <svg
+          class="h-4 w-4"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
         >
-          <h1
-            class={`font-bold ${jogo ? "text-lg md:text-xl" : "text-xl"} ${
-              ehDiaAtual ? "text-blue-400" : ""
-            }`}
-          >
-            {dia}
-          </h1>
+          <path
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M6 9l6 6 6-6"
+          />
+        </svg>
+      </button>
 
-          <div class="flex-1 flex flex-col justify-center items-center">
-            {#if jogo}
-              <div class="flex flex-col items-center justify-center">
-                <div class="flex gap-5 justify-center items-center p-1">
-                  {#if jogo.status === "agendado"}
+      {#if monthDropdownOpen}
+        <div
+          class="absolute right-0 mt-2 w-56 bg-emerald-950 border border-emerald-800 rounded shadow-lg z-50"
+          on:click|stopPropagation
+        >
+          {#each months as month, index}
+            <div
+              class="px-4 py-2 cursor-pointer text-emerald-100 hover:bg-emerald-900 hover:text-white"
+              on:click={() => {
+                selectedMonth = index;
+                monthDropdownOpen = false;
+              }}
+            >
+              {month}
+            </div>
+          {/each}
+        </div>
+      {/if}
+    </div>
+  </div>
+
+  <hr class="my-8 border-gray-400/50" />
+
+  <!-- Grid de dias -->
+  <div class="grid grid-cols-7 gap-4">
+    {#each days as day}
+      {@const games = getGamesForDay(day)}
+      {@const hasGames = games.length > 0}
+      {@const hasMultipleGames = games.length > 1}
+      {@const isToday = day === today && selectedMonth === currentMonth}
+
+      <div
+        class={`bg-emerald-950/10 border-2 backdrop-blur-sm h-36 p-3 relative overflow-hidden transition-all duration-200 rounded-2xl
+            ${isToday ? "border-cyan-400" : "border-gray-400/50"}
+            ${hasGames ? "border-emerald-600" : ""}
+            ${hasMultipleGames ? "border-yellow-500 border-2 cursor-pointer hover:bg-emerald-900/30" : ""}`}
+        on:click={() => handleCardClick(day, games)}
+      >
+        <div class="h-full flex flex-col">
+          <div class="text-white font-semibold text-lg">{day}</div>
+
+          {#if hasGames}
+            <div class="flex-1 flex flex-col justify-center items-center">
+              {#each games.slice(0, 1) as game}
+                <div class="flex flex-col items-center text-center space-y-2">
+                  <div class="flex items-center gap-2">
                     <img
-                      class="w-10 h-10 md:w-12 md:h-12 object-cover"
-                      src={jogo.time1.logo}
-                      alt="Time 1"
+                      src={game.arenaImage ?? "/placeholder.svg"}
+                      alt={game.arena}
+                      class="w-6 h-6 rounded-full object-cover"
                     />
-                    <h1 class="text-xl md:text-2xl font-bold text-center">X</h1>
-                    <img
-                      class="w-10 h-10 md:w-12 md:h-12 object-cover"
-                      src={jogo.time2.logo}
-                      alt="Time 2"
-                    />
-                  {:else}
-                    <div class="flex gap-2 justify-center items-center">
-                      <div class="flex justify-center items-center">
-                        <img
-                          class="w-10 h-10 md:w-12 md:h-12 object-cover"
-                          src={jogo.time1.logo}
-                          alt="Time 1"
-                        />
-                        <h1 class="text-sm md:text-base font-bold">
-                          {jogo.time1.placar}
-                        </h1>
-                      </div>
-                      <h1 class="text-sm md:text-base font-bold text-center">X</h1>
-                      <div class="flex items-center">
-                        <h1 class="text-sm md:text-base font-bold">
-                          {jogo.time2.placar}
-                        </h1>
-                        <img
-                          class="w-10 h-10 md:w-12 md:h-12 object-cover"
-                          src={jogo.time2.logo}
-                          alt="Time 2"
-                        />
-                      </div>
-                    </div>
-                  {/if}
+                    <span class="text-white font-medium text-sm truncate"
+                      >{game.arena}</span
+                    >
+                  </div>
+
+                  <div class="flex items-center gap-1 text-emerald-300">
+                    <!-- MapPin icon -->
+                    <svg
+                      class="w-3 h-3"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                    >
+                      <path
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        d="M21 10c0 6-9 12-9 12S3 16 3 10a9 9 0 1118 0z"
+                      />
+                      <circle
+                        cx="12"
+                        cy="10"
+                        r="3"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      />
+                    </svg>
+                    <span class="text-xs">{game.location}</span>
+                  </div>
+
+                  <div class="flex items-center gap-1 text-emerald-300">
+                    <!-- Clock icon -->
+                    <svg
+                      class="w-3 h-3"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                    >
+                      <circle
+                        cx="12"
+                        cy="12"
+                        r="10"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      />
+                      <path
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        d="M12 6v6l4 2"
+                      />
+                    </svg>
+                    <span class="text-sm font-medium">{game.time}</span>
+                  </div>
                 </div>
-                <h1 class="text-center text-lg md:text-xl font-bold">
-                  {jogo.horario}
-                </h1>
+              {/each}
+
+              {#if hasMultipleGames}
+                <div
+                  class="absolute top-2 right-2 bg-yellow-500 text-black text-xs px-2 py-1 rounded-full font-bold"
+                >
+                  +{games.length - 1}
+                </div>
+              {/if}
+            </div>
+          {/if}
+        </div>
+      </div>
+    {/each}
+  </div>
+
+  {#if isModalOpen}
+    <div
+      class="fixed inset-0 z-50 flex items-center justify-center"
+      role="dialog"
+      aria-modal="true"
+    >
+      <div
+        class="absolute inset-0 bg-black/60"
+        on:click={() => (isModalOpen = false)}
+      ></div>
+
+      <div class="relative max-w-md w-full mx-4">
+        <div
+          class="bg-emerald-950 border border-emerald-800 text-white rounded-lg overflow-hidden"
+        >
+          <div class="p-4 border-b border-emerald-800">
+            <h2 class="text-emerald-300 text-lg font-semibold">Jogos do Dia</h2>
+          </div>
+
+          <div class="p-4 space-y-4">
+            {#each selectedDayGames as game}
+              <div
+                class="bg-emerald-900/50 rounded-lg p-4 border border-emerald-800"
+              >
+                <div class="flex items-center gap-3 mb-3">
+                  <img
+                    src={game.arenaImage ?? "/placeholder.svg"}
+                    alt={game.arena}
+                    class="w-8 h-8 rounded-full object-cover"
+                  />
+                  <div>
+                    <h3 class="text-white font-semibold">{game.arena}</h3>
+                    <div
+                      class="flex items-center gap-1 text-emerald-300 text-sm"
+                    >
+                      <!-- MapPin small -->
+                      <svg
+                        class="w-3 h-3"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                      >
+                        <path
+                          stroke-width="2"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          d="M21 10c0 6-9 12-9 12S3 16 3 10a9 9 0 1118 0z"
+                        />
+                        <circle
+                          cx="12"
+                          cy="10"
+                          r="3"
+                          stroke-width="2"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                        />
+                      </svg>
+                      <span>{game.location}</span>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="flex items-center gap-1 text-emerald-300">
+                  <!-- Clock -->
+                  <svg
+                    class="w-4 h-4"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                  >
+                    <circle
+                      cx="12"
+                      cy="12"
+                      r="10"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                    <path
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      d="M12 6v6l4 2"
+                    />
+                  </svg>
+                  <span class="font-medium">{game.time}</span>
+                </div>
               </div>
-            {/if}
+            {/each}
+          </div>
+
+          <div class="p-3 border-t border-emerald-800 flex justify-end gap-2">
+            <button
+              class="px-3 py-1 rounded bg-emerald-800 hover:bg-emerald-700 text-white"
+              on:click={() => (isModalOpen = false)}
+            >
+              Fechar
+            </button>
           </div>
         </div>
-      {/each}
+      </div>
+    </div>
+  {/if}
+
+  <!-- Legenda -->
+  <div class="mt-6 flex items-center justify-center gap-6 text-sm">
+    <div class="flex items-center gap-2">
+      <div
+        class="w-4 h-4 bg-emerald-950/50 border border-emerald-400 rounded"
+      ></div>
+      <span class="text-emerald-300">Dia atual</span>
+    </div>
+    <div class="flex items-center gap-2">
+      <div
+        class="w-4 h-4 bg-emerald-950/50 border border-emerald-600 rounded"
+      ></div>
+      <span class="text-emerald-300">Com jogos agendados</span>
+    </div>
+    <div class="flex items-center gap-2">
+      <div
+        class="w-4 h-4 bg-emerald-950/50 border-2 border-yellow-500 rounded"
+      ></div>
+      <span class="text-emerald-300">Múltiplos jogos (clique para ver)</span>
     </div>
   </div>
 </div>
