@@ -120,7 +120,7 @@
         </a>
 
         <a
-          href="/membro/notificacoes"
+          href="/membro/mensagens"
           class={`relative w-full gap-3 flex items-center py-2 px-3 hover:border border-green-400/90 rounded-full cursor-pointer
             ${isExpanded ? "justify-start" : "justify-center items-center"}
           `}
