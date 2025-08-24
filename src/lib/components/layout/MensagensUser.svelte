@@ -1,7 +1,7 @@
 <script>
   import { onMount } from "svelte";
 
-  import { Bell, EllipsisVertical, CheckCircle } from "@lucide/svelte";
+  import { EllipsisVertical, CheckCircle } from "@lucide/svelte";
 
   // Mock de dados
   const Dados = [
@@ -87,8 +87,7 @@
     <!-- Cabeçalho -->
     <div class="flex flex-col md:flex-row justify-between items-center gap-4">
       <h1 class="text-2xl md:text-3xl font-bold flex items-center gap-2">
-        <Bell class="w-8 h-8 text-green-400/90" />
-        Notificações
+        Mensagens
       </h1>
 
       <button
