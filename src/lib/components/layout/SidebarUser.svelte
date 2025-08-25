@@ -21,7 +21,7 @@
 </script>
 
 <div
-  class={`fixed z-50 top-10 left-10 flex flex-col text-wrap flex-wrap gap-4 items-center backdrop-blur-sm p-4 rounded-3xl transition-all duration-300 border-2 border-gray-400/50 
+  class={`fixed z-50 top-10 left-10 flex flex-col text-wrap flex-wrap gap-4 items-center backdrop-blur-xl p-4 rounded-3xl transition-all duration-300 border-2 border-gray-400/50 
     ${
       isExpanded
         ? "w-72 h-11/12 justify-items-start bg-red-800"
@@ -36,19 +36,19 @@
 >
   {#if isHovered && !isExpanded}
     <button class="flex cursor-pointer" on:click={() => (isExpanded = true)}>
-      <ChevronRight strokeWidth={4} class="text-green-400" />
-      <ChevronRight strokeWidth={4} class="text-green-400" />
+      <ChevronRight strokeWidth={4} class="text-cyan-400" />
+      <ChevronRight strokeWidth={4} class="text-cyan-400" />
     </button>
   {/if}
 
   {#if !isExpanded}
     <div
-      class={`flex items-center justify-center rounded-full bg-green-500/10
+      class={`flex items-center justify-center rounded-full bg-cyan-500/10
         ${isHovered ? "p-2" : "p-1"}
       `}
     >
       <img
-        class="rounded-full object-cover transition-all duration-100 cursor-pointer hover:border-4 border-green-400/90"
+        class="rounded-full object-cover transition-all duration-100 cursor-pointer hover:border-4 border-cyan-400/90"
         alt="Avatar"
         src={foto_perfil}
       />
@@ -58,23 +58,23 @@
   {#if isExpanded}
     <div class="w-full flex align-center justify-center gap-3">
       <div
-        class="flex w-12 h-12 items-center justify-center rounded-full bg-green-500/10"
+        class="flex w-12 h-12 items-center justify-center rounded-full bg-cyan-500/10"
       >
         <img
-          class="h-3/4 w-3/4 rounded-full object-cover transition-all duration-100 cursor-pointer hover:border-4 border-green-400/90"
+          class="h-3/4 w-3/4 rounded-full object-cover transition-all duration-100 cursor-pointer hover:border-4 border-cyan-400/90"
           alt="Avatar"
           src={foto_perfil}
         />
       </div>
       <h1
         class="relative flex justify-center items-center text-sm font-bold text-white text-center text-wrap"
-        style="text-shadow: 0 2px 2px green"
+        style="text-shadow: 0 2px 2px cyan"
       >
         JORGE LUCAS
       </h1>
       <button class="flex cursor-pointer" on:click={() => (isExpanded = false)}>
-        <ChevronLeft strokeWidth={4} class="w-4 text-green-400" />
-        <ChevronLeft strokeWidth={4} class="w-4 text-green-400" />
+        <ChevronLeft strokeWidth={4} class="w-4 text-cyan-400" />
+        <ChevronLeft strokeWidth={4} class="w-4 text-cyan-400" />
       </button>
     </div>
   {/if}
@@ -83,7 +83,7 @@
     <div class="flex flex-col gap-3 w-full justify-center items-center">
       <hr class="w-full h-0.5 bg-slate-400/90" />
       <ul
-        class={`w-full text-green-400/95 font-bold text-left flex flex-col gap-3 ${
+        class={`w-full text-cyan-400/95 font-bold text-left flex flex-col gap-3 ${
           isExpanded
             ? "justify-start items-start"
             : "justify-center items-center"
@@ -91,7 +91,7 @@
       >
         <a
           href="/membro"
-          class={`w-full gap-3 flex items-center py-2 px-3 hover:border border-green-400/90 rounded-full cursor-pointer
+          class={`w-full gap-3 flex items-center py-2 px-3 hover:border border-cyan-400/90 rounded-full cursor-pointer
             ${isExpanded ? "justify-start" : "justify-center items-center"}
           `}
         >
@@ -101,7 +101,7 @@
 
         <a
           href="/membro/rachas"
-          class={`w-full gap-3 flex items-center py-2 px-3 hover:border border-green-400/90 rounded-full cursor-pointer
+          class={`w-full gap-3 flex items-center py-2 px-3 hover:border border-cyan-400/90 rounded-full cursor-pointer
             ${isExpanded ? "justify-start" : "justify-center items-center"}
           `}
         >
@@ -111,7 +111,7 @@
 
         <a
           href="/membro/calendario"
-          class={`w-full gap-3 flex items-center py-2 px-3 hover:border border-green-400/90 rounded-full cursor-pointer
+          class={`w-full gap-3 flex items-center py-2 px-3 hover:border border-cyan-400/90 rounded-full cursor-pointer
             ${isExpanded ? "justify-start" : "justify-center items-center"}
           `}
         >
@@ -121,13 +121,13 @@
 
         <a
           href="/membro/mensagens"
-          class={`relative w-full gap-3 flex items-center py-2 px-3 hover:border border-green-400/90 rounded-full cursor-pointer
+          class={`relative w-full gap-3 flex items-center py-2 px-3 hover:border border-cyan-400/90 rounded-full cursor-pointer
             ${isExpanded ? "justify-start" : "justify-center items-center"}
           `}
         >
           <Mail />
           <span
-            class="absolute -top-0 -right-0 p-1 rounded-full text-center font-bold text-white text-xs bg-red-500/70"
+            class="absolute -top-0 -right-0 p-1 rounded-full text-center font-bold text-white text-xs bg-green-500"
           >
             {#if isExpanded}5{/if}
           </span>
@@ -141,10 +141,10 @@
         <div class="w-full flex flex-col gap-3 mt-1">
           <hr class="w-full h-0.5 bg-slate-400/90" />
           <ul
-            class="w-full text-green-400/95 font-bold text-left flex flex-col gap-3"
+            class="w-full text-cyan-400/95 font-bold text-left flex flex-col gap-3"
           >
             <li
-              class={`w-full gap-3 flex items-center py-2 px-3 hover:border border-green-400/90 rounded-full cursor-pointer
+              class={`w-full gap-3 flex items-center py-2 px-3 hover:border border-cyan-400/90 rounded-full cursor-pointer
                 ${isExpanded ? "justify-start" : "justify-center items-center"}
               `}
             >
@@ -153,7 +153,7 @@
             </li>
 
             <li
-              class={`w-full gap-3 flex items-center py-2 px-3 hover:border border-green-400/90 rounded-full cursor-pointer
+              class={`w-full gap-3 flex items-center py-2 px-3 hover:border border-cyan-400/90 rounded-full cursor-pointer
                 ${isExpanded ? "justify-start" : "justify-center items-center"}
               `}
             >
