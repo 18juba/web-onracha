@@ -7,7 +7,7 @@
     Crown,
     Play,
     Trophy,
-    Check
+    Check,
   } from "@lucide/svelte";
   import premiere_gif from "../lib/assets/img/artilheiro.gif";
   import premiere_gif2 from "../lib/assets/img/premiere2.gif";
@@ -43,10 +43,12 @@
           class="text-gray-300 hover:text-cyan-400 transition-colors">Contato</a
         >
       </div>
-      <button
-        class="bg-cyan-500 hover:bg-cyan-600 text-white px-4 py-2 rounded-md cursor-pointer"
-        >Entrar</button
-      >
+      <a href="/membro" data-sveltekit-preload-data>
+        <button
+          class="bg-cyan-500 hover:bg-cyan-600 text-white px-4 py-2 rounded-md cursor-pointer"
+          >Entrar</button
+        >
+      </a>
     </nav>
   </header>
 
@@ -63,12 +65,14 @@
           partidas e gerencie sua arena com facilidade.
         </p>
         <div class="flex flex-col sm:flex-row gap-4">
-          <button
-            class="flex items-center justify-center gap-2 bg-cyan-500 hover:bg-cyan-600 text-white px-8 py-3 rounded-lg cursor-pointer"
-          >
-            <Play class="h-5 w-5" />
-            Começar Agora
-          </button>
+          <a href="/membro" data-sveltekit-preload-data>
+            <button
+              class="flex items-center justify-center gap-2 bg-cyan-500 hover:bg-cyan-600 text-white px-8 py-3 rounded-lg cursor-pointer"
+            >
+              <Play class="h-5 w-5" />
+              Começar Agora
+            </button>
+          </a>
           <button
             class="px-8 py-3 rounded-lg border border-cyan-400 text-cyan-400 hover:bg-cyan-400 hover:text-white bg-transparent cursor-pointer"
           >
@@ -102,137 +106,146 @@
   </section>
 
   <!-- Features Section -->
-<section id="features" class="container mx-auto px-4 py-20">
-  <div class="text-center mb-16">
-    <h2 class="text-4xl font-bold text-white mb-4">
-      <span class="text-cyan-400">RECURSOS</span> PRINCIPAIS
-    </h2>
-    <p class="text-xl text-gray-300 max-w-2xl mx-auto">
-      Tudo que você precisa para gerenciar sua arena e organizar jogos
-      inesquecíveis
-    </p>
-  </div>
-
-  <div class="flex flex-col gap-12">
-    <!-- Card 1 (imagem esquerda / texto direita) -->
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 items-stretch">
-      <!-- imagem -->
-      <div class="relative rounded-md border-2 border-emerald-500/40">
-        <img
-          src={premiere_gif}
-          alt="Comunidade ativa"
-          class="object-cover w-full h-full rounded-md"
-        />
-      </div>
-      <!-- texto -->
-      <div
-        class="bg-gradient-to-t from-cyan-500/20 to-slate-900 border border-emerald-500/40 rounded-md p-6 flex flex-col justify-between"
-      >
-        <div class="flex justify-between items-center mb-4">
-          <h3 class="text-3xl font-bold text-white">Comunidade Ativa</h3>
-          <div class="bg-cyan-500 rounded-full p-2">
-            <Users class="h-5 w-5 text-white" />
-          </div>
-        </div>
-        <p class="text-gray-100 leading-relaxed mb-4">
-          Participe de uma comunidade que respira esporte. Encontre novos
-          parceiros de jogo, entre em partidas abertas e crie sua própria
-          equipe sem complicação.
-        </p>
-        <ul class="mt-auto text-gray-200 space-y-2">
-          <li class="flex items-center gap-2">
-            <Check class="h-7 w-7 text-cyan-400" strokeWidth={3} /> Jogos abertos sempre disponíveis
-          </li>
-          <li class="flex items-center gap-2">
-            <Check class="h-7 w-7 text-emerald-400" strokeWidth={3} /> Chat entre jogadores
-          </li>
-          <li class="flex items-center gap-2">
-            <Check class="h-7 w-7 text-cyan-400" strokeWidth={3} /> Criação de grupos
-          </li>
-        </ul>
-      </div>
+  <section id="features" class="container mx-auto px-4 py-20">
+    <div class="text-center mb-16">
+      <h2 class="text-4xl font-bold text-white mb-4">
+        <span class="text-cyan-400">RECURSOS</span> PRINCIPAIS
+      </h2>
+      <p class="text-xl text-gray-300 max-w-2xl mx-auto">
+        Tudo que você precisa para gerenciar sua arena e organizar jogos
+        inesquecíveis
+      </p>
     </div>
 
-    <!-- Card 2 (texto esquerda / imagem direita) -->
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 items-stretch">
-      <!-- texto -->
-      <div
-        class="order-2 md:order-1 bg-gradient-to-t from-cyan-500/20 to-slate-900 border border-emerald-500/40 rounded-md p-6 flex flex-col justify-between"
-      >
-        <div class="flex justify-between items-center mb-4">
-          <h3 class="text-3xl font-bold text-white">Registro de Arenas</h3>
-          <div class="bg-cyan-500 rounded-full p-2">
-            <MapPin class="h-5 w-5 text-white" />
-          </div>
+    <div class="flex flex-col gap-12">
+      <!-- Card 1 (imagem esquerda / texto direita) -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 items-stretch">
+        <!-- imagem -->
+        <div class="relative rounded-md border-2 border-emerald-500/40">
+          <img
+            src={premiere_gif}
+            alt="Comunidade ativa"
+            class="object-cover w-full h-full rounded-md"
+          />
         </div>
-        <p class="text-gray-300 leading-relaxed mb-4">
-          Dê visibilidade à sua arena! Proprietários podem cadastrar quadras
-          com fotos, preços e horários em tempo real, atraindo mais jogadores
-          para o seu espaço.
-        </p>
-        <ul class="mt-auto text-gray-100 text-lg space-y-2">
-          <li class="flex items-center gap-2">
-            <Check class="h-7 w-7 text-emerald-400" strokeWidth={3} /> Cadastro rápido e simples
-          </li>
-          <li class="flex items-center gap-2">
-            <Check class="h-7 w-7 text-cyan-400" strokeWidth={3} /> Agenda atualizada automaticamente
-          </li>
-          <li class="flex items-center gap-2">
-            <Check class="h-7 w-7 text-emerald-400" strokeWidth={3} /> Maior alcance na comunidade
-          </li>
-        </ul>
+        <!-- texto -->
+        <div
+          class="bg-gradient-to-t from-cyan-500/20 to-slate-900 border border-emerald-500/40 rounded-md p-6 flex flex-col justify-between"
+        >
+          <div class="flex justify-between items-center mb-4">
+            <h3 class="text-3xl font-bold text-white">Comunidade Ativa</h3>
+            <div class="bg-cyan-500 rounded-full p-2">
+              <Users class="h-5 w-5 text-white" />
+            </div>
+          </div>
+          <p class="text-gray-100 leading-relaxed mb-4">
+            Participe de uma comunidade que respira esporte. Encontre novos
+            parceiros de jogo, entre em partidas abertas e crie sua própria
+            equipe sem complicação.
+          </p>
+          <ul class="mt-auto text-gray-200 space-y-2">
+            <li class="flex items-center gap-2">
+              <Check class="h-7 w-7 text-cyan-400" strokeWidth={3} /> Jogos abertos
+              sempre disponíveis
+            </li>
+            <li class="flex items-center gap-2">
+              <Check class="h-7 w-7 text-emerald-400" strokeWidth={3} /> Chat entre
+              jogadores
+            </li>
+            <li class="flex items-center gap-2">
+              <Check class="h-7 w-7 text-cyan-400" strokeWidth={3} /> Criação de
+              grupos
+            </li>
+          </ul>
+        </div>
       </div>
-      <!-- imagem -->
-      <div class="order-1 md:order-2 relative rounded-md border-2 border-emerald-500/40">
-        <img
-          src={premiere_gif2}
-          alt="Registro de arenas"
-          class="object-cover w-full h-full rounded-md"
-        />
+
+      <!-- Card 2 (texto esquerda / imagem direita) -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 items-stretch">
+        <!-- texto -->
+        <div
+          class="order-2 md:order-1 bg-gradient-to-t from-cyan-500/20 to-slate-900 border border-emerald-500/40 rounded-md p-6 flex flex-col justify-between"
+        >
+          <div class="flex justify-between items-center mb-4">
+            <h3 class="text-3xl font-bold text-white">Registro de Arenas</h3>
+            <div class="bg-cyan-500 rounded-full p-2">
+              <MapPin class="h-5 w-5 text-white" />
+            </div>
+          </div>
+          <p class="text-gray-300 leading-relaxed mb-4">
+            Dê visibilidade à sua arena! Proprietários podem cadastrar quadras
+            com fotos, preços e horários em tempo real, atraindo mais jogadores
+            para o seu espaço.
+          </p>
+          <ul class="mt-auto text-gray-100 text-lg space-y-2">
+            <li class="flex items-center gap-2">
+              <Check class="h-7 w-7 text-emerald-400" strokeWidth={3} /> Cadastro
+              rápido e simples
+            </li>
+            <li class="flex items-center gap-2">
+              <Check class="h-7 w-7 text-cyan-400" strokeWidth={3} /> Agenda atualizada
+              automaticamente
+            </li>
+            <li class="flex items-center gap-2">
+              <Check class="h-7 w-7 text-emerald-400" strokeWidth={3} /> Maior alcance
+              na comunidade
+            </li>
+          </ul>
+        </div>
+        <!-- imagem -->
+        <div
+          class="order-1 md:order-2 relative rounded-md border-2 border-emerald-500/40"
+        >
+          <img
+            src={premiere_gif2}
+            alt="Registro de arenas"
+            class="object-cover w-full h-full rounded-md"
+          />
+        </div>
+      </div>
+
+      <!-- Card 3 (imagem esquerda / texto direita) -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 items-stretch">
+        <!-- imagem -->
+        <div class="relative rounded-md border-2 border-emerald-500/40">
+          <img
+            src={premiere_gif3}
+            alt="Agendamento fácil"
+            class="object-cover w-full h-full rounded-md"
+          />
+        </div>
+        <!-- texto -->
+        <div
+          class="bg-gradient-to-t from-cyan-500/20 to-slate-900 border border-emerald-500/40 rounded-md p-6 flex flex-col justify-between"
+        >
+          <div class="flex justify-between items-center mb-4">
+            <h3 class="text-3xl font-bold text-white">Agendamento Fácil</h3>
+            <div class="bg-emerald-500 rounded-full p-2">
+              <CalendarDays class="h-5 w-5 text-white" />
+            </div>
+          </div>
+          <p class="text-gray-100 leading-relaxed mb-4">
+            Reserve em segundos, sem complicação. Agende partidas, convide
+            amigos e tenha total controle sobre seus horários.
+          </p>
+          <ul class="mt-auto text-gray-200 text-lg space-y-2">
+            <li class="flex items-center gap-2">
+              <Check class="h-7 w-7 text-cyan-400" strokeWidth={3} /> Reserva online
+              rápida
+            </li>
+            <li class="flex items-center gap-2">
+              <Check class="h-7 w-7 text-emerald-400" strokeWidth={3} /> Convite
+              de jogadores direto no app
+            </li>
+            <li class="flex items-center gap-2">
+              <Check class="h-7 w-7 text-cyan-400" strokeWidth={3} /> Notificações
+              para lembrar dos jogos
+            </li>
+          </ul>
+        </div>
       </div>
     </div>
-
-    <!-- Card 3 (imagem esquerda / texto direita) -->
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 items-stretch">
-      <!-- imagem -->
-      <div class="relative rounded-md border-2 border-emerald-500/40">
-        <img
-          src={premiere_gif3}
-          alt="Agendamento fácil"
-          class="object-cover w-full h-full rounded-md"
-        />
-      </div>
-      <!-- texto -->
-      <div
-        class="bg-gradient-to-t from-cyan-500/20 to-slate-900 border border-emerald-500/40 rounded-md p-6 flex flex-col justify-between"
-      >
-        <div class="flex justify-between items-center mb-4">
-          <h3 class="text-3xl font-bold text-white">Agendamento Fácil</h3>
-          <div class="bg-emerald-500 rounded-full p-2">
-            <CalendarDays class="h-5 w-5 text-white" />
-          </div>
-        </div>
-        <p class="text-gray-100 leading-relaxed mb-4">
-          Reserve em segundos, sem complicação. Agende partidas, convide
-          amigos e tenha total controle sobre seus horários.
-        </p>
-        <ul class="mt-auto text-gray-200 text-lg space-y-2">
-          <li class="flex items-center gap-2">
-            <Check class="h-7 w-7 text-cyan-400" strokeWidth={3} /> Reserva online rápida
-          </li>
-          <li class="flex items-center gap-2">
-            <Check class="h-7 w-7 text-emerald-400" strokeWidth={3} /> Convite de jogadores direto no app
-          </li>
-          <li class="flex items-center gap-2">
-            <Check class="h-7 w-7 text-cyan-400" strokeWidth={3} /> Notificações para lembrar dos jogos
-          </li>
-        </ul>
-      </div>
-    </div>
-  </div>
-</section>
-
-
+  </section>
 
   <!-- CTA Section -->
   <section class="max-w-4xl mx-auto mb-20">
