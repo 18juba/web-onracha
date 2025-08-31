@@ -7,8 +7,11 @@
     Crown,
     Play,
     Trophy,
+    Check
   } from "@lucide/svelte";
-  import dance_gif from "../lib/assets/img/artilheiro.gif";
+  import premiere_gif from "../lib/assets/img/artilheiro.gif";
+  import premiere_gif2 from "../lib/assets/img/premiere2.gif";
+  import premiere_gif3 from "../lib/assets/img/premiere3.gif";
   import cta_img from "../lib/assets/img/lucero.png";
 </script>
 
@@ -99,116 +102,137 @@
   </section>
 
   <!-- Features Section -->
-  <section id="features" class="container mx-auto px-4 py-20">
-    <div class="text-center mb-16">
-      <h2 class="text-4xl font-bold text-white mb-4">
-        <span class="text-cyan-400">RECURSOS</span> PRINCIPAIS
-      </h2>
-      <p class="text-xl text-gray-300 max-w-2xl mx-auto">
-        Tudo que você precisa para gerenciar sua arena e organizar jogos
-        incríveis
-      </p>
-    </div>
+<section id="features" class="container mx-auto px-4 py-20">
+  <div class="text-center mb-16">
+    <h2 class="text-4xl font-bold text-white mb-4">
+      <span class="text-cyan-400">RECURSOS</span> PRINCIPAIS
+    </h2>
+    <p class="text-xl text-gray-300 max-w-2xl mx-auto">
+      Tudo que você precisa para gerenciar sua arena e organizar jogos
+      inesquecíveis
+    </p>
+  </div>
 
-    <div class="grid md:grid-cols-3 gap-8">
-      <!-- Card -->
-      <div
-        class="bg-gradient-to-t from-cyan-500/25 to-slate-800 border border-emerald-500/30 backdrop-blur-sm rounded-lg p-6"
-      >
-        <div class="bg-cyan-500 rounded-full p-3 w-fit mb-4">
-          <MapPin class="h-6 w-6 text-white" />
-        </div>
-        <h3 class="text-xl font-bold text-white mb-3">Registro de Arenas</h3>
-        <p class="text-gray-300">
-          Proprietários podem cadastrar suas quadras com fotos, horários
-          disponíveis e preços
-        </p>
-      </div>
-
-      <div
-        class="bg-gradient-to-t from-cyan-500/25 to-slate-800 border border-emerald-500/30 backdrop-blur-sm rounded-lg p-6"
-      >
-        <div class="bg-emerald-500 rounded-full p-3 w-fit mb-4">
-          <CalendarDays class="h-6 w-6 text-white" />
-        </div>
-        <h3 class="text-xl font-bold text-white mb-3">Agendamento Fácil</h3>
-        <p class="text-gray-300">
-          Sistema intuitivo para reservar horários e organizar partidas com seus
-          amigos
-        </p>
-      </div>
-
-      <div
-        class="bg-gradient-to-t from-cyan-500/25 to-slate-800 border border-emerald-500/30 backdrop-blur-sm rounded-lg p-6"
-      >
-        <div class="bg-cyan-500 rounded-full p-3 w-fit mb-4">
-          <Users class="h-6 w-6 text-white" />
-        </div>
-        <h3 class="text-xl font-bold text-white mb-3">Comunidade Ativa</h3>
-        <p class="text-gray-300">
-          Conecte-se com outros jogadores, participe de jogos abertos e forme
-          equipes
-        </p>
-      </div>
-    </div>
-  </section>
-
-  <!-- About Section -->
-  <section id="about" class="container mx-auto py-20">
-    <div class="grid lg:grid-cols-2 gap-12 items-center">
-      <div class="relative rounded-2xl border-2 border-emerald-500/30">
+  <div class="flex flex-col gap-12">
+    <!-- Card 1 (imagem esquerda / texto direita) -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 items-stretch">
+      <!-- imagem -->
+      <div class="relative rounded-md border-2 border-emerald-500/40">
         <img
-          src={dance_gif}
-          alt="dancinha"
-          class="object-cover w-full h-full rounded-2xl"
+          src={premiere_gif}
+          alt="Comunidade ativa"
+          class="object-cover w-full h-full rounded-md"
         />
       </div>
-
-      <div class="space-y-6">
-        <div class="flex items-start gap-4">
-          <div class="bg-cyan-500 rounded-full p-2 mt-1">
-            <Trophy class="h-4 w-4 text-white" />
-          </div>
-          <div>
-            <h4 class="text-lg font-semibold text-white mb-2">
-              Gestão Completa
-            </h4>
-            <p class="text-gray-300">
-              Sistema completo para proprietários gerenciarem suas arenas
-            </p>
+      <!-- texto -->
+      <div
+        class="bg-gradient-to-t from-cyan-500/20 to-slate-900 border border-emerald-500/40 rounded-md p-6 flex flex-col justify-between"
+      >
+        <div class="flex justify-between items-center mb-4">
+          <h3 class="text-3xl font-bold text-white">Comunidade Ativa</h3>
+          <div class="bg-cyan-500 rounded-full p-2">
+            <Users class="h-5 w-5 text-white" />
           </div>
         </div>
-
-        <div class="flex items-start gap-4">
-          <div class="bg-emerald-500 rounded-full p-2 mt-1">
-            <Users class="h-4 w-4 text-white" />
-          </div>
-          <div>
-            <h4 class="text-lg font-semibold text-white mb-2">
-              Comunidade Conectada
-            </h4>
-            <p class="text-gray-300">
-              Jogadores podem encontrar partidas e formar grupos facilmente
-            </p>
-          </div>
-        </div>
-
-        <div class="flex items-start gap-4">
-          <div class="bg-cyan-500 rounded-full p-2 mt-1">
-            <CalendarDays class="h-4 w-4 text-white" />
-          </div>
-          <div>
-            <h4 class="text-lg font-semibold text-white mb-2">
-              Agendamento Inteligente
-            </h4>
-            <p class="text-gray-300">
-              Calendário integrado com notificações e lembretes automáticos
-            </p>
-          </div>
-        </div>
+        <p class="text-gray-100 leading-relaxed mb-4">
+          Participe de uma comunidade que respira esporte. Encontre novos
+          parceiros de jogo, entre em partidas abertas e crie sua própria
+          equipe sem complicação.
+        </p>
+        <ul class="mt-auto text-gray-200 space-y-2">
+          <li class="flex items-center gap-2">
+            <Check class="h-7 w-7 text-cyan-400" strokeWidth={3} /> Jogos abertos sempre disponíveis
+          </li>
+          <li class="flex items-center gap-2">
+            <Check class="h-7 w-7 text-emerald-400" strokeWidth={3} /> Chat entre jogadores
+          </li>
+          <li class="flex items-center gap-2">
+            <Check class="h-7 w-7 text-cyan-400" strokeWidth={3} /> Criação de grupos
+          </li>
+        </ul>
       </div>
     </div>
-  </section>
+
+    <!-- Card 2 (texto esquerda / imagem direita) -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 items-stretch">
+      <!-- texto -->
+      <div
+        class="order-2 md:order-1 bg-gradient-to-t from-cyan-500/20 to-slate-900 border border-emerald-500/40 rounded-md p-6 flex flex-col justify-between"
+      >
+        <div class="flex justify-between items-center mb-4">
+          <h3 class="text-3xl font-bold text-white">Registro de Arenas</h3>
+          <div class="bg-cyan-500 rounded-full p-2">
+            <MapPin class="h-5 w-5 text-white" />
+          </div>
+        </div>
+        <p class="text-gray-300 leading-relaxed mb-4">
+          Dê visibilidade à sua arena! Proprietários podem cadastrar quadras
+          com fotos, preços e horários em tempo real, atraindo mais jogadores
+          para o seu espaço.
+        </p>
+        <ul class="mt-auto text-gray-100 text-lg space-y-2">
+          <li class="flex items-center gap-2">
+            <Check class="h-7 w-7 text-emerald-400" strokeWidth={3} /> Cadastro rápido e simples
+          </li>
+          <li class="flex items-center gap-2">
+            <Check class="h-7 w-7 text-cyan-400" strokeWidth={3} /> Agenda atualizada automaticamente
+          </li>
+          <li class="flex items-center gap-2">
+            <Check class="h-7 w-7 text-emerald-400" strokeWidth={3} /> Maior alcance na comunidade
+          </li>
+        </ul>
+      </div>
+      <!-- imagem -->
+      <div class="order-1 md:order-2 relative rounded-md border-2 border-emerald-500/40">
+        <img
+          src={premiere_gif2}
+          alt="Registro de arenas"
+          class="object-cover w-full h-full rounded-md"
+        />
+      </div>
+    </div>
+
+    <!-- Card 3 (imagem esquerda / texto direita) -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 items-stretch">
+      <!-- imagem -->
+      <div class="relative rounded-md border-2 border-emerald-500/40">
+        <img
+          src={premiere_gif3}
+          alt="Agendamento fácil"
+          class="object-cover w-full h-full rounded-md"
+        />
+      </div>
+      <!-- texto -->
+      <div
+        class="bg-gradient-to-t from-cyan-500/20 to-slate-900 border border-emerald-500/40 rounded-md p-6 flex flex-col justify-between"
+      >
+        <div class="flex justify-between items-center mb-4">
+          <h3 class="text-3xl font-bold text-white">Agendamento Fácil</h3>
+          <div class="bg-emerald-500 rounded-full p-2">
+            <CalendarDays class="h-5 w-5 text-white" />
+          </div>
+        </div>
+        <p class="text-gray-100 leading-relaxed mb-4">
+          Reserve em segundos, sem complicação. Agende partidas, convide
+          amigos e tenha total controle sobre seus horários.
+        </p>
+        <ul class="mt-auto text-gray-200 text-lg space-y-2">
+          <li class="flex items-center gap-2">
+            <Check class="h-7 w-7 text-cyan-400" strokeWidth={3} /> Reserva online rápida
+          </li>
+          <li class="flex items-center gap-2">
+            <Check class="h-7 w-7 text-emerald-400" strokeWidth={3} /> Convite de jogadores direto no app
+          </li>
+          <li class="flex items-center gap-2">
+            <Check class="h-7 w-7 text-cyan-400" strokeWidth={3} /> Notificações para lembrar dos jogos
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+
 
   <!-- CTA Section -->
   <section class="max-w-4xl mx-auto mb-20">
